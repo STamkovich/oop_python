@@ -68,7 +68,7 @@ class Car:
 # <function Car.driwe at 0x7f843c8daa60>
 #  тоеесть для экземпляра ка\ласса это метод а для класса это функция
 # что бы вызвать функцию от экземпляра класса нужно использовать декораторы
-@ staticmethod
-@ classmethod
+# @ staticmethod
+# @ classmethod
 
 
