@@ -1,26 +1,33 @@
 # 2.6 Геттеры и сеттеры, property атрибуты
 
-class BankAccount:
+class BankAccount:  # создание класса
 
-    def __init__(self, name, balance):
-        self.name = name
-        self.__balance = balance
+    def __init__(self, name, balance):  # инициализация объекта и переменных
+        self.name = name  # присвоение атрибуту класса self.name значение переменной name
+        self.__balance = balance  # то же самое
 
-    def get_balance(self):
-        print('get balance')
-        return self.__balance
+    def get_balance(self):  # метод получаения баланса
+        return print('Мой баланс -', self.__balance)  # возврат сообщения о балансе
 
-    def set_balance(self, value):
-        print('set balance')
-        if not isinstance(value, (int, float)):
-            raise ValueError('Баланс должен быть числом')
-        self.__balance = value
+    def set_balance(self, value):  # метод пополнения баланса
+        if not isinstance(value, (int, float)):  # проверям, передано число или дробно число
+            raise ValueError('баланс должен быть числом')  # если нет, то выводим сообщение
+        self.__balance = value  # если число подходит, то изменяем атрибут класса self.__balance на переданное значение в value
+        print('Баланс пополнен на  - ', self.__balance)  # печатаем сообщение если баланс успешно пополнен
 
-    def delete_balance(self):
-        print('delete balance')
-        del self.__balance
+    def delete_balance(self):  # метод удаления баланса
+        del self.__balance  # удаляем баланс
+        print('Баланс удалён')  # уведомление после удаления баланса
 
-    balace = property(fget=get_balance, fset=set_balance, fdel=delete_balance) # свойства класса
+
+balance = property(fget=get_balance,
+                   # используем функцию Property() для того чтобы сократить запись и повысить удобство работы с классом
+                   fset=set_balance,  # fget=get_balance устанавливает метод удаления баланса
+                   fdel=delete_balance)  # fset=set_balance устанавливаем метод пополнения баланса
+# fdel=delete_balance устанавливает метод удаления баланса
+
+acc1 = BankAccount('Pasha', 1_000_000_000)  # создаём экземпляр класса, и передаём имя и баланс
+
 
 # задачка
 # Создайте класс UserMail, у которого есть:
@@ -51,4 +58,3 @@ class UserMail:
             print('Ошибочная почта')
 
     email = property(fget=get_email, fset=set_email)
-
